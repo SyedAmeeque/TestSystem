@@ -24,8 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-secret-key')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['*']
+ALLOWED_HOSTS = ['testsystem-production-66ee.up.railway.app', 'www.testsystem-production-66ee.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://testsystem-production-66ee.up.railway.app']
 
 
 # Application definition
