@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Test System</title>
+  </head>
+  <body>
+    <!-- navigation starts here =====================///////// -->
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+            <a class="navbar-brand">
+               <h1 class="fw-bold">Logo</h1>
+            </a>
+            {% if request.session.student %}
+
+            <ul class="d-flex list-unstyled p-0 my-auto">
+                <li class="nav-item dropdown my-auto">
+                    <a class="nav-link" href="#" id="navbarDropdownMenuLink" >
+                      <img src="{% static 'images/avatar2.jpg' %}" alt="" class="img-fluid rounded-circle" width="50px">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <li><a class="dropdown-item"><i class="fa-solid fa-user mx-2"></i> {{ request.session.student_name }}</a></li>
+                      <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa-solid fa-arrow-right-from-bracket mx-2"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            {% endif %}
+            </div>
+        </nav>
+    <!-- navigation ends here =====================///////// -->
+
+
+    
+    <section class="padding">
+        <div class="container">
+            <h1 class="fw-bold text-center mb-5">Your {{student.course.Subject}} Test is about to Start</h1>
+            <h4 class="fw-bold">Your Info:</h4>
+            <ul class="p-3">
+               <li class="fw-bold">Name: {{student.fullname}}</li>
+               <li class="fw-bold">Email: {{student.email}}</li>
+               <li class="fw-bold">Batch: {{student.batch}}</li>
+               <li class="fw-bold">Course: {{student.course.Subject}}</li>
+            </ul>
+
+
+            <h4 class="fw-bold">Instructions:</h4>
+            <ul class="p-3">
+               <li>Do Not Use Mobile Phones</li>
+               <li>You have to attempt all the questions</li>
+               <li>You have to answer all the questions in 30 minutes</li>
+               <li>If you have given the answers of maximum numbers of questions you can finish the Exam by clicking the Red button of Finish Exam. </li>
+               <li>If the time of 30 minutes will be over the exam will automatically be finished.</li>
+            </ul>
+
+          
+        </div>
+    </section>
+
+    <!-- Modal -->
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Confirmation Required</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="" class="pb-4" method="post">
+                {% csrf_token %}
+                <div class="form-check form-switch mt-3">
+                    <input class="form-check-input" name="is_paper_started" type="checkbox" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">I hereby confirm that I have read all the instructions</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                <button type="submit" class="btn btn-success">OK</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    <div class="footer-stripe">
+        <div class="container">
+            <div class="d-flex justify-content-around align-items-center">
+                
+                <div class="">
+                    <a class="btn-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                        Start Paper
+                    </a>  
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+  </body>
+</html>
