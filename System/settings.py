@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-secret-key')
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = os.getenv('DEBUG', 'False')
 
 ALLOWED_HOSTS = ['testsystem-production-66ee.up.railway.app', 'www.testsystem-production-66ee.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://testsystem-production-66ee.up.railway.app']
