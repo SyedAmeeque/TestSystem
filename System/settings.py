@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-secret-key')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['examsystem-production.up.railway.app', 'www.examsystem-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['https://examsystem-production.up.railway.app']
+ALLOWED_HOSTS = ['testsystem-production-86a4.up.railway.app', 'www.testsystem-production-86a4.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://testsystem-production-86a4.up.railway.app']
 
 
 
@@ -71,17 +71,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'System.wsgi.application'
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+
+
+# Database
+# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+import dj_database_url
+
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default='sqlite:///db.sqlite3')
 }
 
 # Password validation
