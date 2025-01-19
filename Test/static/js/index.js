@@ -31,7 +31,7 @@ function timer(){
     var value = timer_number.innerHTML;
 
     if (value){
-        timer_width.style.width = `${value * 3+10}%`;
+        timer_width.style.width = `${value * 3}%`;
     }
     
 
