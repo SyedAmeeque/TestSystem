@@ -15,7 +15,7 @@ class studentAdmin(admin.ModelAdmin):
 admin.site.register(Student, studentAdmin)
 
 class QuestionsAdmin(admin.ModelAdmin):
-    list_display=('question','option_a','option_b','option_c','option_d')
+    list_display=('question','option_a','option_b','option_c','option_d','subject')
 
 admin.site.register(Questions, QuestionsAdmin)
 

@@ -24,10 +24,13 @@ class Home(View):
         questions = Questions.objects.filter(subject=get_student.course)
         paginator = Paginator(questions, 1)
         page_number = request.GET.get('page')
-        request.session['page_number'] = page_number
+        if page_number:
+            request.session['page_number'] = page_number
+
         counter = None
         count=0
         get_count = request.GET.get('count')
+        
         if get_count:
             request.session['count_number'] = get_count
             count=get_count
@@ -35,13 +38,13 @@ class Home(View):
             count=1
             if request.session.get("count_number"):
                 del request.session['count_number']
-
         else:
             count=page_number
             if request.session.get("count_number"):
                 del request.session['count_number']
 
         print(request.session.get("count_number"))
+    
         
         if student:
             try:
@@ -53,11 +56,14 @@ class Home(View):
                 print(e)
       
         try:
-            page_obj = paginator.page(page_number)
+            page_obj = paginator.page(count)
         except PageNotAnInteger:
             page_obj = paginator.page(1)
         except EmptyPage:
             page_obj = paginator.page(paginator.num_pages)
+
+        print('page_object:', page_obj)
+
 
         data={
             'count':count,
@@ -79,7 +85,9 @@ class Home(View):
         page_number= request.session.get("page_number")
         count_number= request.session.get("count_number")
         get_paper = Paper.objects.get(student__id=student)
-        
+
+        if count_number == None:
+            count_number = 1
      
         if student and question:
             get_student = Student.objects.get(id=student)

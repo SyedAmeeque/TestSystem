@@ -3,7 +3,6 @@ from django.views import View
 from ..models.student import Student
 from ..models.subject_category import Subject
 from django.contrib.auth.hashers import make_password
-from django.contrib import messages
 # Create your views here.
 
 class Signup(View):
@@ -47,13 +46,11 @@ class Signup(View):
                     data={
                         'error':error_message
                     }
-                    messages.error(request, data)
-                    return redirect('signup')
+                    return render(request, 'signup.html', data)
         data={
             'error':error_message
         }
-        messages.error(request, data)
-        return redirect('signup')
+        return render(request, 'signup.html', data)
         
                 
 

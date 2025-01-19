@@ -18,7 +18,7 @@ class Login(View):
 
 
         if email:
-            get_student = Student.objects.get(email=email)
+            get_student = Student.objects.filter(email=email).first()
           
             if get_student:
                 password_auth = check_password(password, get_student.password)
